@@ -12,6 +12,7 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@pinia/nuxt": "^0.5.1",
+    "@sidebase/nuxt-session": "^0.2.8",
     "nuxt": "^3.8.1",
     "vue": "^3.4.15",
     "vue-router": "^4.2.5"

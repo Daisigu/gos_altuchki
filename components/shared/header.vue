@@ -1,8 +1,8 @@
 <script setup lang="ts">
-
+const {session} = await useSession()
 </script>
 <template>
-  <header class="sticky top-0 bg-white z-10  w-full py-4">
+  <header @click="()=>console.log(session)" class="sticky top-0 bg-white z-10  w-full py-4">
     <UContainer>
       <div class="flex justify-center">
         <NuxtLink to="/">

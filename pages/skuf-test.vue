@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type {TSkufTestQuestion} from "~/types/skuf-test";
 
+const {session} = await useSession()
+
 const step = ref(0)
-const {handleSkufTestFailed} = useSkufTestStore()
+const {handleSkufTestFailed, handleSkufTestSuccess} = useSkufTestStore()
 const questions: TSkufTestQuestion[] = [
   {
     type: 'images',
@@ -35,20 +37,34 @@ const handleAnswer = (question: TSkufTestQuestion, answer: number) => {
   }
   increaseStep()
 }
+watchEffect(() => {
+  if (step.value >= questions.length) {
+    handleSkufTestSuccess()
+  }
+})
 const increaseStep = () => {
   step.value += 1
 }
+definePageMeta({
+  middleware: ['skuf-test']
+})
 </script>
 
 <template>
-  <UContainer class="py-10">
-    <UProgress class="mb-10" :value="step" :max="questions.length"/>
-    <template v-for="(question, key) in questions">
-      <FeaturesSkufTestQuestion @answer="handleAnswer" v-if="key == step" :key="question.title" :question="question"/>
+  <UContainer class="py-10 flex flex-col">
+    <template v-if="step<questions.length">
+      <UProgress class="mb-10" :value="step" :max="questions.length"/>
+      <template v-for="(question, key) in questions">
+        <FeaturesSkufTestQuestion @answer="handleAnswer" v-if="key == step" :key="question.title" :question="question"/>
+      </template>
+    </template>
+    <template v-else>
+      <div class="flex-1 grid place-content-center">
+        <h2 class="sm:text-3xl text-center sm:max-w-[50vw] whitespace-break-spaces">Поздравляем с прохождением теста!
+          <br/>
+          Вы будете направлены на страницу с очередью
+          на выдачу альтушки</h2>
+      </div>
     </template>
   </UContainer>
 </template>
-
-<style scoped>
-
-</style>
