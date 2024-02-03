@@ -46,6 +46,7 @@ const increaseStep = () => {
   step.value += 1
 }
 definePageMeta({
+  title: 'Госальтушки | Тест на скуфа',
   middleware: ['skuf-test']
 })
 </script>

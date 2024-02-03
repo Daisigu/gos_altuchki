@@ -5,6 +5,13 @@ const items = [
   '/altuchka-cases/4.jpg',
   '/altuchka-cases/3.jpg',
 ]
+definePageMeta({
+  title: 'Госальтушки | Главная',
+  description: 'Главная страница госальтушки',
+})
+useSeoMeta({
+  ogImage: '/altuchka-cases/4.jpg',
+})
 </script>
 <template>
   <UContainer class="py-10">

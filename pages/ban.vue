@@ -1,9 +1,18 @@
 <script setup lang="ts">
+
 const {session, reset} = await useSession()
 const handleReset = async () => {
   await reset()
   navigateTo('/')
 }
+definePageMeta({
+  title: 'Госальтушки | ВАМ БАН',
+  middleware: [(to)=>{
+    if(session.value.skufTestStatus !=='failed'){
+      return abortNavigation()
+    }
+  }]
+})
 </script>
 <template>
   <UContainer class="py-10 flex flex-col">

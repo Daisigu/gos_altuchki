@@ -2,12 +2,11 @@
 const {session, update} = await useSession()
 const {order} = toRefs(session.value)
 definePageMeta({
+  title: 'Госальтушки | Комната ожидания',
   middleware: ['skuf-test-passed']
 })
 onMounted(() => {
-
   setInterval(() => {
-    console.log(order.value)
     if (order.value > 0) {
       order.value -= Math.floor(Math.random() * 3) + 1
       update({order: order.value})
