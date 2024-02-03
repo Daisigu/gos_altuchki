@@ -12,6 +12,9 @@ export default defineNuxtConfig({
     nitro: {
         compressPublicAssets: true,
     },
+    colorMode: {
+        preference: 'light'
+    },
     imports: {
         dirs: [
             "composables",
